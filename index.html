@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/styles.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Belgrano&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/095f0a2654.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Weather application</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row search-box">
+        <form class="input-container">
+          <i class="fa-solid fa-location-dot" id="locationButton"></i>
+          <input
+            class="search-input"
+            type="text"
+            placeholder="search for city"
+            autocomplete="off"
+            autofocus="off"
+          />
+          <i class="fa-solid fa-magnifying-glass" id="search-btn"></i>
+        </form>
+      </div>
+      <div class="row Weather">
+        <div class="col-8 currentSituation">
+          <div class="general-info">
+            <div class="info">
+              <div class="city-info">
+                <span class="city-name">Stuttgart</span
+                ><span class="current-date">Saturday 23:13</span>
+              </div>
+              <div class="info-section">
+                <div class="temp-info">
+                  <span id="temperature">16°</span>
+                  <span class="weather-description" id="description"> clear sky</span>
+                </div>
+                <div class="scale-switcher">
+                  <button class="celsius">C</button>
+                  <button class="fahrenheit">F</button>
+                </div>
+              </div>
+            </div>
+            <div class="weather-image">
+              <img src="images/f03d.png" alt="weatherImage" />
+            </div>
+          </div>
+          <div class="detail-info">
+            <div class="detail-title">
+              <div class="detail-description">
+                <p class="detail-name">wind</p>
+                <p class="detail-value" id="wind">7.2 m/h</p>
+              </div>
+              <img src="images/Wind.svg" alt="wind-icon" class="detail-icon" />
+            </div>
+            <div class="detail-title">
+              <div class="detail-description">
+                <p class="detail-name">humidity</p>
+                <p class="detail-value" id="humidity">85%</p>
+              </div>
+              <img
+                src="images/Humidity.svg"
+                alt="humidity-icon"
+                class="detail-icon"
+              />
+            </div>
+            <div class="detail-title">
+              <div class="detail-description">
+                <p class="detail-name">pressure</p>
+                <p class="detail-value">1009 hPa</p>
+              </div>
+              <img
+                src="images/Pressure.svg"
+                alt="pressure-icon"
+                class="detail-icon"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-4 next-days">
+          <div class="next-day">
+            <div class="next-description">
+              <p class="date">Sunday<span> 23/10</span></p>
+              <p class="temp-prediction">19℃</p>
+            </div>
+            <img src="images/f03d.png" alt="prediction-image" />
+          </div>
+          <div class="next-day">
+            <div class="next-description">
+              <p class="date">Monday<span> 23/10</span></p>
+              <p class="temp-prediction">19℃</p>
+            </div>
+            <img src="images/f03d.png" alt="prediction-image" />
+          </div>
+          <div class="next-day">
+            <div class="next-description">
+              <p class="date">Tuesday<span> 23/10</span></p>
+              <p class="temp-prediction">19℃</p>
+            </div>
+            <img src="images/f03d.png" alt="prediction-image" />
+          </div>
+          <div class="next-day">
+            <div class="next-description">
+              <p class="date">Wednesday<span> 23/10</span></p>
+              <p class="temp-prediction">19℃</p>
+            </div>
+            <img src="images/f03d.png" alt="prediction-image" />
+          </div>
+          <div class="next-day">
+            <div class="next-description">
+              <p class="date">Thursday<span> 23/10</span></p>
+              <p class="temp-prediction">19℃</p>
+            </div>
+            <img src="images/f03d.png" alt="prediction-image" />
+          </div>
+          <div class="next-day">
+            <div class="next-description">
+              <p class="date">Friday<span> 23/10</span></p>
+              <p class="temp-prediction">19℃</p>
+            </div>
+            <img src="images/f03d.png" alt="prediction-image" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
