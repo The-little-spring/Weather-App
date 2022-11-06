@@ -240,3 +240,17 @@ body {
 .date span {
   color: var(--white);
 }
+
+.writer {
+  text-align: center;
+  color: var(--white);
+  margin-top: 1.5rem;
+}
+
+.writer a {
+  color: var(--white);
+}
+
+.writer a:hover {
+  color: var(--main-color);
+}
