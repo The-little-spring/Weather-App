@@ -47,7 +47,26 @@ function showTemperature(response) {
     response.data.weather[0].main;
 }
 
+//Search city
+
+function search(event) {
+  let searchInput = document.querySelector(".search-input");
+  let apiKey = "0efb4fc16a9ed98dc0b3aafd8491d6ad";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput.value}&units=metric&appid=${apiKey}`;
+  axios.get(apiUrl).then(showTemperature);
+}
+
+function getSubmit(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector(".search-input");
+  search(searchInput.value);
+}
+
 //live location
+
+function getLiveLocation() {
+  navigator.geolocation.getCurrentPosition(showPosition);
+}
 
 function showPosition(position) {
   let apiKey = "0efb4fc16a9ed98dc0b3aafd8491d6ad";
@@ -57,43 +76,34 @@ function showPosition(position) {
   axios.get(apiUrl).then(showTemperature);
 }
 
-function getLiveLocation() {
-  navigator.geolocation.getCurrentPosition(showPosition);
-}
-
-let locationButton = document.querySelector("#locationButton");
-locationButton.addEventListener("click", getLiveLocation);
-
-//Search city
-
-function search(event) {
-  event.preventDefault();
-  let searchInput = document.querySelector(".search-input");
-  let cityName = document.querySelector(".city-name");
-  let apiKey = "0efb4fc16a9ed98dc0b3aafd8491d6ad";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput.value}&units=metric&appid=${apiKey}`;
-  axios.get(apiUrl).then(showTemperature);
-}
-
-let form = document.querySelector(".input-container");
-form.addEventListener("submit", search);
-
 //C to F
 
 function convertToFahrenheit(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = "29°";
+  let temperature = (9 / 5) * celsiusTemperature + 32;
+  temperatureElement.innerHTML = `${temperature}°`;
 }
 
 function convertToCelsius(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = "16°";
+  let temperature = Math.round(celsiusTemperature);
+  temperatureElement.innerHTML = `${temperature}°`;
 }
+
+let form = document.querySelector(".input-container");
+form.addEventListener("submit", getSubmit);
+
+let locationButton = document.querySelector("#locationButton");
+locationButton.addEventListener("click", getLiveLocation);
+
+let celsiusTemperature = null;
 
 let fahrenheitLink = document.querySelector(".fahrenheit");
 fahrenheitLink.addEventListener("click", convertToFahrenheit);
 
 let celsiusLink = document.querySelector(".celsius");
 celsiusLink.addEventListener("click", convertToCelsius);
+
+search("Stuttgart");
