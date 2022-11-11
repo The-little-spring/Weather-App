@@ -35,19 +35,31 @@ function showTemperature(response) {
   let currentTemperature = document.querySelector("#temperature");
   roundTemperature = Math.round(response.data.main.temp);
   currentTemperature.innerHTML = `${roundTemperature}°`;
+
   let cityName = document.querySelector(".city-name");
   cityName.innerHTML = response.data.name;
+
+  document.querySelector("#description").innerHTML =
+    response.data.weather[0].main;
+
   document.querySelector(
     "#humidity"
   ).innerHTML = `${response.data.main.humidity}%`;
+
   document.querySelector("#wind").innerHTML = `${Math.round(
     response.data.wind.speed
   )} m/h`;
-  document.querySelector("#description").innerHTML =
-    response.data.weather[0].main;
+
   document.querySelector(
     "#pressure"
   ).innerHTML = `${response.data.main.pressure} hPa`;
+
+  let weatherIcon = document.querySelector("#weather-icon");
+  weatherIcon.setAttribute(
+    "src",
+    `images/${response.data.weather[0].icon}.png`
+  );
+  weatherIcon.setAttribute("alt", `${response.data.weather[0].description}`);
 }
 
 //Search city
