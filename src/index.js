@@ -108,6 +108,9 @@ function convertToCelsius(event) {
 let form = document.querySelector(".input-container");
 form.addEventListener("submit", getSubmit);
 
+let searchIcon = document.querySelector("#search-btn");
+searchIcon.addEventListener("click", getSubmit);
+
 let locationButton = document.querySelector("#locationButton");
 locationButton.addEventListener("click", getLiveLocation);
 

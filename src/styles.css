@@ -38,6 +38,16 @@ body {
   font-size: 1.4rem;
 }
 
+#locationButton:hover {
+  color: var(--gray);
+  cursor: pointer;
+}
+
+#search-btn:hover {
+  color: var(--gray);
+  cursor: pointer;
+}
+
 .search-input {
   width: 100%;
   padding: 1rem;
