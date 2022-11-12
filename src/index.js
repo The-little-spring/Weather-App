@@ -105,6 +105,31 @@ function convertToCelsius(event) {
   temperatureElement.innerHTML = `${temperature}°`;
 }
 
+//forecast
+
+function showForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tur"];
+
+  let forecastHTML = `<div class="forecast">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="each-day">
+        <div class="each-description">
+          <p class="date">${day}<span> 23/10</span></p>
+          <p class="temp-prediction">19℃</p>
+        </div>
+          <img src="images/f03d.png" alt="prediction-image" />
+      </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 let form = document.querySelector(".input-container");
 form.addEventListener("submit", getSubmit);
 
@@ -123,3 +148,4 @@ let celsiusLink = document.querySelector(".celsius");
 celsiusLink.addEventListener("click", convertToCelsius);
 
 search("Stuttgart");
+showForecast();
