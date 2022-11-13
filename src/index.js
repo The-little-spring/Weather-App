@@ -33,35 +33,66 @@ dateElement.innerHTML = formatDate(currentTime);
 
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
-  let day = date.getDay();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  return day;
+}
 
-  return days[day];
+function formatForecastDate(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDate();
+  let months = [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+  ];
+  let month = months[date.getMonth()];
+  return `&nbsp${day}/${month}`;
 }
 
 function showForecast(response) {
   let forecast = response.data.daily;
-  console.log(response.data.daily);
 
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="forecast">`;
   forecast.forEach(function (forecastDay, index) {
-    if (index < 6)
+    if (index > 0 && index < 7)
       forecastHTML =
         forecastHTML +
         `
       <div class="each-day">
         <div class="each-description">
-          <p class="date">${formatDay(forecastDay.dt)}<span> 23/10</span></p>
+          <p class="date">${formatDay(
+            forecastDay.dt
+          )}<span>${formatForecastDate(forecastDay.dt)}</span></p>
           <div class="temp-prediction"> <span class="weather-forecast-temperature-max">${Math.round(
             forecastDay.temp.max
           )}° / </span>
           <span class="weather-forecast-temperature-min"> ${Math.round(
             forecastDay.temp.min
-          )}°</span></div>
+          )}° C</span></div>
         </div>
-          <img src="images/f03d.png" alt="prediction-image" />
+          <img src="images/${
+            forecastDay.weather[0].icon
+          }.png" alt="prediction-image" />
       </div>
   `;
   });
@@ -69,11 +100,10 @@ function showForecast(response) {
   forecastElement.innerHTML = forecastHTML;
 }
 
-function getForecast(coordinates) {
+function getForecast(coords) {
   let apiKey = "de2c40e370d58e257faf07ba4ea95840";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&units=metric&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&units=metric&appid=${apiKey}`;
   axios.get(apiUrl).then(showForecast);
-  console.log(apiUrl);
 }
 
 //current temperature, Geo
@@ -174,4 +204,3 @@ let celsiusLink = document.querySelector(".celsius");
 celsiusLink.addEventListener("click", convertToCelsius);
 
 search("Stuttgart");
-getForecast();
