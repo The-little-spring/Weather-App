@@ -80,8 +80,8 @@ function getSubmit(event) {
 
 function showPosition(position) {
   let apiKey = "de2c40e370d58e257faf07ba4ea95840";
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
+  lat = position.coords.latitude;
+  lon = position.coords.longitude;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
   axios.get(apiUrl).then(showTemperature);
 }
@@ -129,6 +129,14 @@ function showForecast() {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
+
+function getForecast() {
+  let apiKey = "de2c40e370d58e257faf07ba4ea95840";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  axios.get(apiUrl).then(showForecast);
+}
+
+//calls
 
 let form = document.querySelector(".input-container");
 form.addEventListener("submit", getSubmit);
