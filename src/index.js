@@ -83,12 +83,12 @@ function showForecast(response) {
           <p class="date">${formatDay(
             forecastDay.dt
           )}<span>${formatForecastDate(forecastDay.dt)}</span></p>
-          <div class="temp-prediction"> <span class="weather-forecast-temperature-max">${Math.round(
-            forecastDay.temp.max
-          )}° / </span>
-          <span class="weather-forecast-temperature-min"> ${Math.round(
+          <div class="temp-prediction"> <span class="weather-forecast-temperature-min">${Math.round(
             forecastDay.temp.min
-          )}° C</span></div>
+          )}°  </span>
+          <span class="weather-forecast-temperature-max"> / ${Math.round(
+            forecastDay.temp.max
+          )}° <strong>C</strong></span></div>
         </div>
           <img src="images/${
             forecastDay.weather[0].icon

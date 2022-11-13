@@ -247,8 +247,17 @@ body {
   color: var(--white);
 }
 
-.date span {
+.date {
   color: var(--white);
+  font-weight: 500;
+}
+
+.date span {
+  color: var(--gray);
+}
+
+.weather-forecast-temperature-min {
+  color: var(--gray);
 }
 
 .writer {
